@@ -1,282 +1,267 @@
-# 🎯 Your Personal Portfolio Website - Ready to Launch!
+# Personal Portfolio Website
 
-**Status**: ✅ Fully Built | ⏳ Awaiting Your Content | 🚀 Ready to Deploy
+A high-performance, minimalist personal portfolio website built with Astro.
 
----
+## 🚀 Quick Start
 
-## 🌟 What You Have
+### Prerequisites
 
-A **production-ready, high-performance portfolio website** built with:
+- Node.js 18+ installed
+- npm or yarn package manager
 
-- ✅ Astro (static site generator)
-- ✅ Brutalist minimalist design
-- ✅ Optimized for 95+ PageSpeed score
-- ✅ Fully responsive (mobile-first)
-- ✅ All sections: Hero, About, Projects, Experience, Skills, Contact
-- ✅ SEO-optimized with meta tags
-- ✅ Ready to deploy to Vercel/Netlify/GitHub Pages
+### Installation
 
-**Your dev server is running**: http://localhost:4321/ 👈 Open this!
-
----
-
-## 🚀 Quick Start (3 Steps)
-
-### 1️⃣ Customize Your Content (Required)
-Open `portfolio/src/pages/index.astro` and update:
-- Your hero headline and subtitle
-- Your About section bio
-- Your projects (replace examples)
-- Your work experience
-- Your skills
-
-**Time**: 1-2 hours | **Guide**: See [CUSTOMIZATION.md](./portfolio/CUSTOMIZATION.md)
-
-### 2️⃣ Set Up Contact Form
-1. Sign up at [formspree.io](https://formspree.io) (free)
-2. Create a form and copy the ID
-3. Update `portfolio/src/components/ContactForm.astro` (line 18)
-
-**Time**: 5 minutes
-
-### 3️⃣ Deploy Your Site
-Push to GitHub, then deploy to Vercel in 2 clicks.
-
-**Time**: 5-10 minutes | **Guide**: See [DEPLOYMENT.md](./portfolio/DEPLOYMENT.md)
-
----
-
-## 📁 What's Inside
-
-```
-/Users/nuryamanmadov/Desktop/test/
-│
-├── portfolio/                    ← YOUR WEBSITE
-│   ├── src/
-│   │   ├── components/          ← Reusable UI components
-│   │   ├── layouts/             ← Navigation & footer
-│   │   ├── pages/
-│   │   │   └── index.astro      ← ⭐ MAIN FILE - EDIT THIS
-│   │   └── styles/
-│   │       └── global.css       ← Design system
-│   ├── public/
-│   │   └── images/              ← Add your project screenshots
-│   └── README.md
-│
-├── 📖 Documentation
-│   ├── GET_STARTED.md           ← Start here! Overview & next steps
-│   ├── CHECKLIST.md             ← Step-by-step action items
-│   ├── PROJECT_SUMMARY.md       ← What was built & specs
-│   ├── ARCHITECTURE.md          ← Technical architecture
-│   └── DESIGN_SYSTEM.md         ← Typography, colors, spacing
-│
-└── content/
-    └── Nurmyrat-Amanmadov-Resume.pdf  ← Your resume (reference)
-```
-
----
-
-## 📚 Documentation Guide
-
-Start here → Read in this order:
-
-1. **[GET_STARTED.md](./GET_STARTED.md)**
-   - Quick overview of what's built
-   - Next steps to customize
-   - File structure reference
-
-2. **[CHECKLIST.md](./CHECKLIST.md)**
-   - Step-by-step action items
-   - Time estimates for each phase
-   - Testing checklist
-
-3. **[portfolio/CUSTOMIZATION.md](./portfolio/CUSTOMIZATION.md)**
-   - Detailed customization guide
-   - Line-by-line editing instructions
-   - Content writing tips
-
-4. **[portfolio/DEPLOYMENT.md](./portfolio/DEPLOYMENT.md)**
-   - Three deployment options
-   - Custom domain setup
-   - Troubleshooting guide
-
-**Advanced Reference:**
-- [ARCHITECTURE.md](./ARCHITECTURE.md) - Technical architecture
-- [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) - Design specifications
-- [portfolio/README.md](./portfolio/README.md) - Project documentation
-
----
-
-## ⚡ Commands
+1. Install dependencies:
 
 ```bash
-# In the terminal (already running):
-cd portfolio
-
-# Development
-npm run dev      # ✅ Already running at http://localhost:4321/
-npm run build    # Build for production
-npm run preview  # Preview production build
-
-# Stop server: Ctrl + C
+npm install
 ```
 
----
+2. Start the development server:
 
-## 🎯 Your Mission
+```bash
+npm run dev
+```
 
-### Phase 1: Make It Yours (Priority)
-- [ ] Update `portfolio/src/pages/index.astro` with YOUR content
-- [ ] Update `portfolio/src/layouts/BaseLayout.astro` with YOUR info
-- [ ] Set up Formspree contact form
-- [ ] Add project images to `portfolio/public/images/`
+3. Open your browser and visit: `http://localhost:4321`
 
-### Phase 2: Test & Deploy
-- [ ] Test locally (mobile + desktop)
-- [ ] Run production build
-- [ ] Deploy to Vercel/Netlify
-- [ ] Share with the world! 🌍
+## 📝 Customization Guide
 
-**Estimated time to launch**: 2-3 hours
+### 1. Personal Information
 
----
+Edit `src/pages/index.astro` to update:
 
-## 💡 What Makes This Special
+- **Hero Section**: Update the title and subtitle with your value proposition
+- **About Section**: Replace placeholder bio with your story
+- **Contact Email**: Update social links in the footer
 
-Built following your detailed prompt requirements:
+### 2. Projects
 
-✅ **Performance-First**
-- Static site (no server required)
-- Zero JavaScript by default
-- System fonts (no external requests)
-- Optimized build process
-- Target: 95+ PageSpeed score
+In `src/pages/index.astro`, find the `projects` array and add your projects:
 
-✅ **Design Excellence**
-- Brutalist minimalism aesthetic
+```javascript
+{
+  title: 'Your Project Name',
+  description: 'Brief description of the project',
+  techStack: ['Tech1', 'Tech2', 'Tech3'],
+  githubUrl: 'https://github.com/yourusername/project',
+  liveUrl: 'https://yourproject.com', // Optional
+  imageUrl: '/images/your-project.jpg' // Add image to public/images/
+}
+```
+
+### 3. Work Experience
+
+Update the `experience` array with your actual work history:
+
+```javascript
+{
+  company: 'Company Name',
+  role: 'Your Position',
+  period: 'YYYY - YYYY',
+  location: 'City, State or Remote',
+  achievements: [
+    'Key achievement 1',
+    'Key achievement 2',
+  ]
+}
+```
+
+### 4. Skills
+
+Modify the `skills` object to reflect your actual skills:
+
+```javascript
+const skills = {
+	"Category Name": ["Skill 1", "Skill 2", "Skill 3"],
+	// Add more categories
+};
+```
+
+### 5. Contact Form
+
+The contact form uses Formspree. To activate it:
+
+1. Sign up at [https://formspree.io](https://formspree.io)
+2. Create a new form
+3. Replace `YOUR_FORMSPREE_ID` in `src/components/ContactForm.astro` with your
+   form ID
+
+### 6. Meta Tags & SEO
+
+Update SEO information in `src/layouts/BaseLayout.astro`:
+
+- Site title
+- Meta description
+- Social media links
+- Open Graph image (create `public/og-image.png`)
+
+### 7. Styling
+
+The design system is defined in `src/styles/global.css`. You can customize:
+
+- Colors (search for `:root` variables)
+- Typography scale
+- Spacing system
+- Accent color (default: blue `#2563EB`)
+
+## 🏗️ Project Structure
+
+```
+/
+├── public/
+│   ├── favicon.svg
+│   └── images/          # Add your project screenshots here
+├── src/
+│   ├── components/
+│   │   ├── ContactForm.astro
+│   │   ├── ProjectCard.astro
+│   │   ├── SkillCategory.astro
+│   │   └── TimelineItem.astro
+│   ├── layouts/
+│   │   └── BaseLayout.astro
+│   ├── pages/
+│   │   └── index.astro
+│   └── styles/
+│       └── global.css
+├── astro.config.mjs
+└── package.json
+```
+
+## 🛠️ Available Commands
+
+| Command           | Action                                      |
+| :---------------- | :------------------------------------------ |
+| `npm install`     | Install dependencies                        |
+| `npm run dev`     | Start dev server at `localhost:4321`        |
+| `npm run build`   | Build production site to `./dist/`          |
+| `npm run preview` | Preview your build locally before deploying |
+
+## 🚢 Deployment
+
+### Deploy to Vercel
+
+1. Push your code to GitHub
+2. Visit [vercel.com](https://vercel.com)
+3. Import your repository
+4. Vercel will auto-detect Astro and deploy
+
+### Deploy to Netlify
+
+1. Push your code to GitHub
+2. Visit [netlify.com](https://netlify.com)
+3. Click "Add new site" → "Import an existing project"
+4. Select your repository
+5. Build command: `npm run build`
+6. Publish directory: `dist`
+
+### Deploy to GitHub Pages
+
+1. Update `site` in `astro.config.mjs`:
+
+    ```javascript
+    site: "https://yourusername.github.io";
+    ```
+
+2. Create `.github/workflows/deploy.yml`:
+
+    ```yaml
+    name: Deploy to GitHub Pages
+
+    on:
+        push:
+            branches: [main]
+
+    jobs:
+        build:
+            runs-on: ubuntu-latest
+            steps:
+                - uses: actions/checkout@v3
+                - uses: actions/setup-node@v3
+                  with:
+                      node-version: 18
+                - run: npm ci
+                - run: npm run build
+                - uses: peaceiris/actions-gh-pages@v3
+                  with:
+                      github_token: ${{ secrets.GITHUB_TOKEN }}
+                      publish_dir: ./dist
+    ```
+
+3. Push to GitHub and enable GitHub Pages in repository settings
+
+## 📊 Performance Checklist
+
+- [x] Minimal JavaScript (Astro ships zero JS by default)
+- [x] Optimized CSS (automatically minified in production)
+- [x] System fonts (no external font loading)
+- [x] Lazy loading for images
+- [x] Semantic HTML
+- [x] Accessible navigation
+- [ ] Add WebP images for projects
+- [ ] Add proper alt text to all images
+- [ ] Test with Lighthouse (target: 95+ score)
+
+## 🎨 Design Philosophy
+
+This website follows **Brutalist Minimalism**:
+
 - Content-first approach
 - Clean typography hierarchy
-- Monochrome + accent color
-- Fully accessible (WCAG compliant)
+- Monochrome palette with strategic accent color
+- Fast loading times
+- Zero unnecessary animations
+- Highly accessible
 
-✅ **Developer Experience**
-- TypeScript strict mode
-- Component-based architecture
-- Hot module replacement
-- Comprehensive documentation
-- Easy to maintain
+## 📄 License
 
-✅ **Business Ready**
-- Professional first impression
-- Optimized for recruiters
-- SEO-friendly
-- Contact form for leads
-- Social media integration
+This project is open source and available under the MIT License.
 
----
+## 🤝 Support
 
-## 🆘 Need Help?
+If you need help customizing this template, check out:
 
-**Documentation**
-- All guides in this folder
-- Inline comments in code
-- Step-by-step instructions
+- [Astro Documentation](https://docs.astro.build)
+- [Design System Reference](../DESIGN_SYSTEM.md)
+- [Architecture Guide](../ARCHITECTURE.md)
 
-**External Resources**
-- [Astro Docs](https://docs.astro.build)
-- [Formspree Help](https://help.formspree.io)
-- [Vercel Docs](https://vercel.com/docs)
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-**Quick Tips**
-- Start with GET_STARTED.md
-- Use CHECKLIST.md as your guide
-- Test changes as you go (auto-reloads)
-- Don't skip the testing phase!
+## 🚀 Project Structure
 
----
+Inside of your Astro project, you'll see the following folders and files:
 
-## 🎨 Customization at a Glance
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
 
-### Essential (Must Do)
-1. **Content**: `portfolio/src/pages/index.astro`
-2. **Personal Info**: `portfolio/src/layouts/BaseLayout.astro`
-3. **Contact Form**: `portfolio/src/components/ContactForm.astro`
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page
+is exposed as a route based on its file name.
 
-### Optional (Nice to Have)
-4. **Colors**: `portfolio/src/styles/global.css`
-5. **Images**: `portfolio/public/images/`
-6. **Favicon**: `portfolio/public/favicon.svg`
+There's nothing special about `src/components/`, but that's where we like to put
+any Astro/React/Vue/Svelte/Preact components.
 
----
+Any static assets, like images, can be placed in the `public/` directory.
 
-## 🚢 Deployment Options
+## 🧞 Commands
 
-### 1. Vercel (Recommended)
-**Pros**: Easiest, automatic previews, excellent performance
-**Time**: 2 minutes
-**Cost**: Free
+All commands are run from the root of the project, from a terminal:
 
-### 2. Netlify
-**Pros**: Also easy, form handling built-in
-**Time**: 3 minutes
-**Cost**: Free
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-### 3. GitHub Pages
-**Pros**: Free forever, good for static sites
-**Time**: 5 minutes
-**Cost**: Free
+## 👀 Want to learn more?
 
-**See [DEPLOYMENT.md](./portfolio/DEPLOYMENT.md) for detailed instructions**
-
----
-
-## ✨ Next Actions
-
-1. **Right Now**: Open http://localhost:4321/ to see your site
-2. **Next 5 min**: Read [GET_STARTED.md](./GET_STARTED.md)
-3. **Next 2 hours**: Customize content using [CHECKLIST.md](./CHECKLIST.md)
-4. **Then**: Deploy using [DEPLOYMENT.md](./portfolio/DEPLOYMENT.md)
-
----
-
-## 📊 Project Stats
-
-- **Lines of Code**: ~1,200
-- **Components**: 9 reusable components
-- **Pages**: 1 (single-page design)
-- **Build Time**: <1 second
-- **Bundle Size**: ~50KB (minified)
-- **Performance**: Optimized for 95+ score
-
----
-
-## 🎓 What This Demonstrates
-
-Your portfolio showcases:
-- Modern web development practices
-- Performance optimization skills
-- Design system thinking
-- Component architecture
-- Accessibility awareness
-- SEO knowledge
-- DevOps capabilities (deployment)
-
-Perfect for a **Cloud & Infrastructure Engineer** role! 💼
-
----
-
-## 🎉 You're Ready!
-
-Everything is set up and waiting for your personal touch.
-
-**Current Status**: Website is running → Start customizing!
-
-**First Step**: Open `portfolio/src/pages/index.astro` in your editor
-
-**Questions?** Check the documentation files or the guides listed above.
-
----
-
-**Good luck with your portfolio! 🚀**
-
-*Built with Astro, designed for performance, optimized for success.*
+Feel free to check [our documentation](https://docs.astro.build) or jump into
+our [Discord server](https://astro.build/chat).

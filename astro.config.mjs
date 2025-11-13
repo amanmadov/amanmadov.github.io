@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
     site: 'https://amanmadov.github.io',
-    base: '/personal-webpage',
+    base: '/',
     build: {
         inlineStylesheets: 'always',
     },
