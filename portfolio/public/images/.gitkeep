@@ -1,0 +1,9 @@
+# Placeholder for project images
+# Add your project screenshots here
+
+Project images should be:
+- High quality (at least 800x600px)
+- Optimized for web (use WebP format when possible)
+- Named descriptively (e.g., project1.jpg, cloud-infrastructure.jpg)
+
+Replace the placeholder imageUrl paths in src/pages/index.astro with your actual images.

@@ -1,0 +1,184 @@
+---
+interface Props {
+	title: string;
+	authors: string;
+	publication: string;
+	year: string;
+	doi?: string;
+	url?: string;
+	abstract?: string;
+	citations?: number;
+}
+
+const { title, authors, publication, year, doi, url, abstract, citations } = Astro.props;
+---
+
+<article class="publication-card">
+	<div class="publication-header">
+		<span class="publication-year">{year}</span>
+		{citations && <span class="publication-citations">{citations} citations</span>}
+	</div>
+
+	<h3 class="publication-title">{title}</h3>
+
+	<p class="publication-authors">{authors}</p>
+
+	<p class="publication-venue">
+		<em>{publication}</em>
+	</p>
+
+	{abstract && <p class="publication-abstract">{abstract}</p>}
+
+	<div class="publication-links">
+		{
+			url && (
+				<a href={url} class="publication-link" target="_blank" rel="noopener noreferrer">
+					<svg
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+						<polyline points="15 3 21 3 21 9" />
+						<line x1="10" y1="14" x2="21" y2="3" />
+					</svg>
+					View Paper
+				</a>
+			)
+		}
+		{
+			doi && (
+				<a
+					href={`https://doi.org/${doi}`}
+					class="publication-link"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<svg
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+						<polyline points="14 2 14 8 20 8" />
+					</svg>
+					DOI
+				</a>
+			)
+		}
+	</div>
+</article>
+
+<style>
+	.publication-card {
+		background-color: white;
+		border: 1px solid var(--color-border);
+		padding: var(--space-xl);
+		transition: all var(--transition-base);
+	}
+
+	.publication-card:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+	}
+
+	.publication-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: var(--space-md);
+	}
+
+	.publication-year {
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+		font-weight: 700;
+		color: var(--color-accent);
+		background-color: rgba(37, 99, 235, 0.1);
+		padding: var(--space-xs) var(--space-sm);
+		border-radius: 3px;
+	}
+
+	.publication-citations {
+		font-size: var(--text-xs);
+		color: var(--color-muted);
+		font-family: var(--font-mono);
+	}
+
+	.publication-title {
+		font-size: var(--text-lg);
+		line-height: var(--leading-snug);
+		margin-bottom: var(--space-sm);
+		color: var(--color-fg);
+	}
+
+	.publication-authors {
+		font-size: var(--text-sm);
+		color: var(--color-muted);
+		margin-bottom: var(--space-sm);
+		line-height: var(--leading-normal);
+	}
+
+	.publication-venue {
+		font-size: var(--text-sm);
+		color: var(--color-fg);
+		margin-bottom: var(--space-md);
+	}
+
+	.publication-venue em {
+		font-style: italic;
+	}
+
+	.publication-abstract {
+		font-size: var(--text-sm);
+		color: var(--color-muted);
+		line-height: var(--leading-relaxed);
+		margin-bottom: var(--space-lg);
+		border-left: 2px solid var(--color-border);
+		padding-left: var(--space-md);
+	}
+
+	.publication-links {
+		display: flex;
+		gap: var(--space-md);
+		flex-wrap: wrap;
+	}
+
+	.publication-link {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-xs);
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--color-accent);
+		text-decoration: none;
+		transition: all var(--transition-fast);
+	}
+
+	.publication-link:hover {
+		color: var(--color-accent-hover);
+		text-decoration: underline;
+	}
+
+	.publication-link svg {
+		flex-shrink: 0;
+	}
+
+	@media (max-width: 768px) {
+		.publication-card {
+			padding: var(--space-lg);
+		}
+
+		.publication-header {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: var(--space-xs);
+		}
+	}
+</style>

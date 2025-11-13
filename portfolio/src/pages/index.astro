@@ -1,0 +1,691 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import TimelineItem from '../components/TimelineItem.astro';
+import EducationItem from '../components/EducationItem.astro';
+import PublicationCard from '../components/PublicationCard.astro';
+import CertificationCard from '../components/CertificationCard.astro';
+import SkillCategory from '../components/SkillCategory.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const projects = [
+	{
+		title: 'GBD Collaborator Portal',
+		description:
+			'Architected and deployed a mission-critical, global-scale web application platform serving 20,000+ health researchers across 170+ countries for the Global Burden of Disease (GBD) studies. Engineered using Magentrix PRM and Rise 360 LMS technologies with custom Salesforce integrations.',
+		techStack: [
+			'Salesforce',
+			'Magentrix',
+			'Rise 360 LMS',
+			'Django',
+			'Python',
+			'Jenkins',
+			'Docker',
+		],
+		// liveUrl: "https://gbdcollaboratorportal.healthdata.org",
+		imageUrl: '/images/projects/gbd.png',
+	},
+	{
+		title: 'AI-Powered RPA System for Digital Banking',
+		description:
+			"Led the architecture and implementation of an enterprise-grade RPA system with AI-powered backend for Türkiye İş Bankası, Turkey's largest private bank, achieving 70% efficiency gains and driving digital transformation.",
+		techStack: [
+			'UiPath',
+			'UiPath Automation Cloud',
+			'.NET',
+			'Node.js',
+			'MongoDB',
+			'AI/OCR',
+			'ABBYY',
+		],
+		// liveUrl: "https://www.uipath.com/resources/automation-case-studies/rpa-revolution-at-isbank",
+		imageUrl: '/images/projects/rpa.jpg',
+	},
+	{
+		title: 'Enterprise Database Infrastructure Modernization',
+		description:
+			'Spearheaded complete modernization of enterprise database infrastructure, managing 30+ production SQL Server databases while architecting migration from legacy desktop applications to high-performance web-based platforms, achieving 20% performance improvement.',
+		techStack: ['SQL Server', 'SSIS', 'SSRS', 'T-SQL', 'C#', 'ASP.NET MVC', 'jQuery', 'UiPath'],
+		imageUrl: '/images/projects/database-modernization.jpg',
+	},
+];
+
+const experience = [
+	{
+		company: 'Institute for Health Metrics, University of Washington',
+		companyUrl: 'https://www.healthdata.org',
+		role: 'Senior Infrastructure Engineer',
+		period: 'Jul 2023 - Present',
+		location: 'Seattle, USA',
+		achievements: [
+			'Architected and deployed a global-scale web application portal using Magentrix and Rise 360 LMS technologies, serving more than 20,000 collaborators across 170+ countries to advance worldwide collaboration in GBD health studies',
+			'Re-engineered Salesforce database architecture to optimize data modeling and support highly customized solutions with complex relational structures, delivering significantly faster data retrieval times',
+			'Developed enterprise-grade Salesforce automations using custom Apex solutions to streamline critical business processes, achieving a 65% reduction in manual operations across multiple departments',
+			'Architected Selenium-based test automation framework for Salesforce integrations using pytest and Selenium, achieving a 90% reduction in manual testing time',
+			'Led critical infrastructure migrations supporting Kubernetes cluster transitions from Rancher to RKE2 and Azure AKS, orchestrating smooth migrations with minimal downtime',
+		],
+	},
+	{
+		company: 'Softtech Yazılım Teknolojileri A.Ş',
+		companyUrl: 'https://www.softtech.com.tr',
+		role: 'RPA Consultant, Software Architect',
+		period: 'Dec 2019 - Jan 2022',
+		location: 'Istanbul, Turkiye',
+		achievements: [
+			"Architected and delivered an enterprise-scale RPA system with AI-powered intelligence for Türkiye İş Bankası, Turkey's largest private bank, achieving a 70% efficiency gain and driving digital transformation",
+			'Partnered strategically with Şişecam, a global manufacturing leader, to engineer and deploy intelligent automation solutions that revolutionized invoice processing workflows through RPA and AI-powered OCR technologies',
+			'Engineered a high-performance, interactive web application using Node.js and MongoDB that delivered a comprehensive monitoring dashboard, providing real-time visibility into RPA transactions and workflows',
+			'Designed and implemented production-grade RESTful APIs using Node.js and Express.js, employing an API-first architecture methodology with Swagger-driven documentation',
+			'Empowered citizen developer initiatives by designing and delivering comprehensive training programs on RPA best practices and UiPath platform capabilities',
+		],
+	},
+	{
+		company: 'Efes Varlık Yönetim A.Ş',
+		companyUrl: 'https://www.efesvarlik.com.tr',
+		role: 'Software Engineer',
+		period: 'Sep 2017 - Sep 2019',
+		location: 'Istanbul, Turkiye',
+		achievements: [
+			'Spearheaded legacy system modernization initiative by partnering with external development teams to architect and execute a comprehensive migration from desktop infrastructure to a high-performance web-based platform',
+			'Transformed operational efficiency by automating critical business processes using UiPath RPA, achieving a 50% reduction in process cycle times while ensuring full regulatory compliance',
+			'Delivered measurable performance gains by implementing comprehensive database tuning and optimization strategies, achieving an average 20% improvement in database performance',
+			'Managed enterprise-scale database infrastructure overseeing more than 30 production databases, ensuring high availability, disaster recovery readiness, and optimal performance',
+			'Built robust ETL pipelines using SSIS to orchestrate the extraction, transformation, and loading of data from diverse sources into SQL Server databases',
+		],
+	},
+];
+
+const skills = {
+	'Programming Languages': ['JavaScript', 'TypeScript', 'Python', 'C#', '.NET', 'Apex'],
+	'Frameworks & Technologies': ['Node.js', 'Express.js', 'React', 'ASP.NET MVC', 'Django', 'LWC'],
+	'Databases & Data Management': [
+		'Amazon DynamoDB',
+		'MySQL',
+		'PostgreSQL',
+		'MongoDB',
+		'SQLite',
+		'SQL Server',
+	],
+	'Cloud Platforms': ['AWS (EC2, Lambda, IAM, S3)', 'Azure (AKS, Virtual Machines)'],
+	'DevOps & Infrastructure': [
+		'Docker',
+		'Kubernetes',
+		'Rancher',
+		'RKE2',
+		'JIRA',
+		'CI/CD Pipelines',
+	],
+	'Enterprise Platforms': [
+		'Salesforce CRM',
+		'Magentrix PRM',
+		'Qualtrics',
+		'UiPath Automation Cloud',
+	],
+	'Integration & APIs': ['REST', 'SOAP', 'Salesforce DX', 'API Development', 'Postman'],
+	'Testing & Automation': ['Selenium', 'pytest', 'Jenkins', 'UiPath', 'Automation Anywhere'],
+	'Data Engineering': ['ETL (SSIS)', 'T-SQL', 'Data Modeling', 'Business Intelligence', 'SSRS'],
+};
+
+const education = [
+	{
+		institution: 'Touro University',
+		institutionUrl: 'https://www.touro.edu',
+		degree: 'Master of Science',
+		field: 'Information Systems',
+		period: '2022 - 2023',
+		location: 'New York, USA',
+		gpa: '4.0/4.0',
+		achievements: [
+			'Graduated with highest academic honors',
+			'Specialized in cloud infrastructure and enterprise architecture',
+			'Courses: Advanced Database Development, Website Engineering, Cloud Computing, IT Project Management',
+		],
+	},
+	{
+		institution: 'Yildiz Technical University',
+		institutionUrl: 'https://www.yildiz.edu.tr/en',
+		degree: 'Master of Science',
+		field: 'Information Technologies',
+		period: '2014 - 2016',
+		location: 'Istanbul, Turkiye',
+		gpa: '3.79/4.0',
+		achievements: [
+			'Advanced research in Machine Learning and Distributed Systems',
+			'Focus on big data processing and intelligent systems',
+			'Courses: Data Mining, Machine Learning, Natural Language Processing, Discrete Mathematics, Algorithm Analysis',
+		],
+	},
+	{
+		institution: 'Yildiz Technical University',
+		institutionUrl: 'https://www.yildiz.edu.tr/en',
+		degree: 'Bachelor of Science',
+		field: 'Electrical Engineering',
+		period: '2008 - 2014',
+		location: 'Istanbul, Turkiye',
+		gpa: '3.11/4.0',
+		achievements: [
+			'Strong foundation in engineering and technical problem-solving',
+			'Completed comprehensive engineering curriculum with focus on automation and control systems',
+			'Courses: Engineering Mathematics, Circuit Analysis, Signals and Systems, Control Systems, Microprocessors',
+		],
+	},
+	{
+		institution: 'Anadolu University',
+		institutionUrl: 'https://www.anadolu.edu.tr/en/open-education',
+		degree: 'Bachelor of Arts',
+		field: 'Economics (Open Education)',
+		period: '2012 - 2014',
+		location: 'Istanbul, Turkiye',
+		gpa: '3.56/4.0',
+		achievements: [
+			'Strong foundation in economics and analytical thinking',
+			'Comprehensive curriculum covering economic theory, policy, and applied economics',
+			'Courses: Mathematical Economics, International Trade Theory, Monetary Theory & Policy, Fiscal Policy, Labor Economics, Entrepreneurship and Business Management',
+		],
+	},
+	{
+		institution: 'Anadolu University',
+		institutionUrl: 'https://www.anadolu.edu.tr/en/open-education',
+		degree: 'Associate Degree',
+		field: 'Business Administration (Open Education)',
+		period: '2010 - 2012',
+		location: 'Istanbul, Turkiye',
+		gpa: '3.30/4.0',
+		achievements: [
+			'Developed foundational understanding of business operations and management principles',
+			'Focused on entrepreneurship, business planning, and digital commerce strategies',
+			'Courses: General Accounting, Marketing Management, Entrepreneurship, E-Commerce, Supply Chain Management, Customer Relations Management, Business Planning',
+		],
+	},
+];
+
+const publications = [
+	{
+		title: 'From Logs to Knowledge: LLM-Powered Dynamic Knowledge Graphs for Real-Time Cloud Observability',
+		authors: 'Nurmyrat Amanmadov et al.',
+		publication: 'International Journal of Advanced Computer Science and Applications (IJACSA)',
+		year: '2025',
+		// doi: "Volume 16 Issue 10",
+		url: 'https://thesai.org/Publications/ViewPaper?Volume=16&Issue=10&Code=IJACSA&SerialNo=3',
+		abstract:
+			'This paper presents a novel approach to cloud observability using LLM-powered dynamic knowledge graphs for real-time monitoring and analysis of cloud infrastructure.',
+	},
+	{
+		title: 'PerfSpark: Leveraging LLMs to Monitor and Diagnose Runtime Performance Decay',
+		authors: 'Nurmyrat Amanmadov et al.',
+		publication:
+			'IEEE 16th Annual Information Technology, Electronics and Mobile Communication Conference',
+		year: '2025',
+		url: 'https://ieee-iemcon.org/',
+		abstract:
+			'Introduces PerfSpark, a framework that leverages Large Language Models to intelligently monitor and diagnose runtime performance degradation in distributed systems.',
+	},
+	{
+		title: 'BugBlaze: An Explainable Framework for Detecting Latent Defect Ignitions in Software Systems',
+		authors: 'Nurmyrat Amanmadov et al.',
+		publication:
+			'IEEE 16th Annual Information Technology, Electronics and Mobile Communication Conference',
+		year: '2025',
+		url: 'https://ieee-iemcon.org/',
+		abstract:
+			'Presents BugBlaze, an explainable AI framework designed to detect and predict latent software defects before they manifest in production environments.',
+	},
+	{
+		title: 'ResolveLLM: A Large Language Model Framework for Intelligent Conflict Detection and Resolution in Collaborative Software Development',
+		authors: 'Nurmyrat Amanmadov et al.',
+		publication: 'IEEE 3rd International Conference on AI, Blockchain, and Internet of Things',
+		year: '2025',
+		url: 'https://aibthings.com/',
+		abstract:
+			'Introduces ResolveLLM, an intelligent framework that uses large language models to automatically detect and resolve conflicts in collaborative software development environments.',
+	},
+	{
+		title: 'Towards Transparent and Compliant AI Marketing with a Dataset and Benchmark for Detecting AI Washing',
+		authors: 'Nurmyrat Amanmadov et al.',
+		publication: 'IEEE 3rd International Conference on AI, Blockchain, and Internet of Things',
+		year: '2025',
+		url: 'https://aibthings.com/',
+		abstract:
+			'Develops a comprehensive dataset and benchmark for detecting AI washing in marketing, promoting transparency and compliance in AI technology claims.',
+	},
+];
+
+const certifications = [
+	{
+		name: 'AWS Certified Solutions Architect – Professional',
+		issuer: 'Amazon Web Services',
+		date: 'Mar 2025',
+		credentialId: '18da597a-5245-473a-95e5-82e3c4c97803',
+		credentialUrl: 'https://www.credly.com/users/amanmadov',
+		logo: '/images/certifications/aws-certified-solutions-architect-professional.webp',
+		tags: ['Cloud', 'Architecture', 'AWS', 'Professional'],
+	},
+	{
+		name: 'AWS Certified Machine Learning Engineer – Associate',
+		issuer: 'Amazon Web Services',
+		date: 'Jan 2025',
+		credentialId: '641309c0-2eca-46bd-b9b9-0b95ef861928',
+		credentialUrl: 'https://www.credly.com/users/amanmadov',
+		logo: '/images/certifications/aws-certified-machine-learning-engineer-associate.webp',
+		tags: ['Cloud', 'ML', 'AWS', 'AI'],
+	},
+	{
+		name: 'AWS Certified Developer – Associate',
+		issuer: 'Amazon Web Services',
+		date: 'Jan 2025',
+		credentialId: 'b8e9aebd-aff7-4d67-967f-738d6001a285',
+		credentialUrl: 'https://www.credly.com/users/amanmadov',
+		logo: '/images/certifications/aws-certified-developer-associate.webp',
+		tags: ['Cloud', 'Development', 'AWS', 'CI/CD'],
+	},
+	{
+		name: 'AWS Certified AI Practitioner',
+		issuer: 'Amazon Web Services',
+		date: 'Jan 2025',
+		credentialId: '73939cdc-9414-4bd8-888a-049f595efa23',
+		credentialUrl: 'https://www.credly.com/users/amanmadov',
+		logo: '/images/certifications/aws-certified-ai-practitioner.webp',
+		tags: ['Cloud', 'AI', 'AWS', 'ML'],
+	},
+	{
+		name: 'AWS Certified Cloud Practitioner',
+		issuer: 'Amazon Web Services',
+		date: 'Jan 2025',
+		credentialId: 'aae1493d-24fe-427c-add1-8da2b2d9c66d',
+		credentialUrl: 'https://www.credly.com/users/amanmadov',
+		logo: '/images/certifications/aws-certified-cloud-practitioner.png',
+		tags: ['Cloud', 'Fundamentals', 'AWS', 'EC2'],
+	},
+	{
+		name: 'Salesforce Certified Agentforce Specialist',
+		issuer: 'Salesforce',
+		date: 'Oct 2024',
+		credentialId: 'SF-AGENT-2024',
+		credentialUrl: 'https://www.salesforce.com/trailblazer/amanmadov',
+		logo: '/images/certifications/salesforce-agentforce.png',
+		tags: ['Salesforce', 'SaaS', 'AI', 'Agentforce'],
+	},
+	{
+		name: 'Salesforce Certified Platform Administrator',
+		issuer: 'Salesforce',
+		date: 'Dec 2022',
+		credentialId: 'SF-ADMIN-2022',
+		credentialUrl: 'https://www.salesforce.com/trailblazer/amanmadov',
+		logo: '/images/certifications/salesforce-administrator.png',
+		tags: ['Salesforce', 'SaaS', 'Admin', 'Sales Cloud'],
+	},
+	{
+		name: 'Salesforce Certified Platform Administrator II',
+		issuer: 'Salesforce',
+		date: 'Sep 2024',
+		credentialId: 'SF-ADV-ADMIN-2024',
+		credentialUrl: 'https://www.salesforce.com/trailblazer/amanmadov',
+		logo: '/images/certifications/salesforce-advanced-administrator.png',
+		tags: ['Salesforce', 'SaaS', 'Admin', 'Sales Cloud'],
+	},
+	{
+		name: 'Salesforce Certified Platform Developer I',
+		issuer: 'Salesforce',
+		date: 'Jan 2023',
+		credentialId: 'SF-PD1-2023',
+		credentialUrl: 'https://www.salesforce.com/trailblazer/amanmadov',
+		logo: '/images/certifications/salesforce-platform-developer-1.png',
+		tags: ['SaaS', 'Apex', 'LWC', 'SOQL'],
+	},
+	{
+		name: 'Salesforce Certified Platform Developer II',
+		issuer: 'Salesforce',
+		date: 'May 2023',
+		credentialId: 'SF-PD2-2023',
+		credentialUrl: 'https://www.salesforce.com/trailblazer/amanmadov',
+		logo: '/images/certifications/salesforce-platform-developer-2.png',
+		tags: ['SaaS', 'Salesforce APIs', 'Apex', 'LWC'],
+	},
+	{
+		name: 'Salesforce Certified Javascript Developer',
+		issuer: 'Salesforce',
+		date: 'Sep 2022',
+		credentialId: 'SF-JS1-2022',
+		credentialUrl: 'https://www.salesforce.com/trailblazer/amanmadov',
+		logo: '/images/certifications/salesforce-javascript-developer.png',
+		tags: ['Frontend', 'HTML', 'Javascript', 'LWC'],
+	},
+	{
+		name: 'Salesforce Certified Platform App Builder',
+		issuer: 'Salesforce',
+		date: 'Jan 2023',
+		credentialId: 'SF-PAB-2023',
+		credentialUrl: 'https://www.salesforce.com/trailblazer/amanmadov',
+		logo: '/images/certifications/salesforce-platform-app-builder.png',
+		tags: ['Visualforce', 'SaaS', 'Changesets', 'CI/CD'],
+	},
+	{
+		name: 'Salesforce Certified AI Associate',
+		issuer: 'Salesforce',
+		date: 'Sep 2024',
+		credentialId: 'SF-AI-2024',
+		credentialUrl: 'https://www.salesforce.com/trailblazer/amanmadov',
+		logo: '/images/certifications/salesforce-associate.png',
+		tags: ['Automation', 'SaaS', 'AI', 'Agentforce'],
+	},
+	{
+		name: 'Salesforce Certified Associate',
+		issuer: 'Salesforce',
+		date: 'May 2023',
+		credentialId: 'SF-ASSOCIATE-2023',
+		credentialUrl: 'https://www.salesforce.com/trailblazer/amanmadov',
+		logo: '/images/certifications/salesforce-associate.png',
+		tags: ['Salesforce', 'SaaS', 'Foundations', 'Sales Cloud'],
+	},
+	{
+		name: 'Automation Anywhere Certified Advanced Automation Professional',
+		issuer: 'Automation Anywhere',
+		date: 'Sep 2024',
+		credentialId: 'AA-AAP-2024',
+		credentialUrl:
+			'https://certificates.automationanywhere.com/0ca0a2fe-1004-4749-95d0-992575b64475#acc.9NOpBabA',
+		logo: '/images/certifications/automation-anywhere-rpa.svg',
+		tags: ['Automation', 'RPA', 'Robotic Process Automation'],
+	},
+	{
+		name: 'Certified Advanced RPA Professional - Automation 360',
+		issuer: 'Automation Anywhere',
+		date: 'Aug 2022',
+		credentialId: 'AA-AAP-2022',
+		credentialUrl:
+			'https://certificates.automationanywhere.com/60cc3632-60c6-4398-9584-6260430319bb#acc.2DPHvfOj',
+		logo: '/images/certifications/automation-anywhere-rpa.svg',
+		tags: ['Automation', 'RPA', 'Robotic Process Automation'],
+	},
+	{
+		name: 'Google Data Analytics Professional Certificate',
+		issuer: 'Google',
+		date: 'Jul 2022',
+		credentialId: '66386424-79b6-4d8c-84a8-4ae49dbc6e9a',
+		credentialUrl: 'https://www.credly.com/users/amanmadov',
+		logo: '/images/certifications/google-data-analytics.png',
+		tags: ['Google', 'Data Analytics', 'SQL', 'Data Visualization'],
+	},
+];
+---
+
+<BaseLayout>
+	<!-- Hero Section -->
+	<section class="section-hero">
+		<div class="container">
+			<div class="hero-content">
+				<h1 class="hero-title">
+					I architect enterprise-scale solutions at the intersection of Cloud
+					Infrastructure, Intelligent Automation, and AI
+				</h1>
+				<p class="hero-subtitle">
+					Senior Infrastructure Engineer advancing global health research at IHME,
+					University of Washington, building Cloud infrastructure, Salesforce ecosystems,
+					and AI-powered platforms serving 20,000+ collaborators across 170+ countries
+				</p>
+				<div class="hero-cta">
+					<a href="#projects" class="btn btn-primary">View My Work</a>
+					<a href="#contact" class="btn">Get In Touch</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- About Section -->
+	<section id="about" class="section">
+		<div class="container container-narrow">
+			<h2>About Me</h2>
+			<div class="about-content">
+				<p>
+					I'm a Senior Infrastructure Engineer with a proven track record of architecting
+					enterprise-scale solutions that bridge cloud infrastructure, intelligent
+					automation, and data-driven systems. Currently advancing global health research
+					at the Institute for Health Metrics and Evaluation (University of Washington), I
+					engineer robust Cloud infrastructure, Salesforce ecosystems, and AI-powered
+					automation platforms that serve 20,000+ collaborators across 170+ countries.
+				</p>
+				<p>
+					My expertise spans the full spectrum of modern infrastructure engineering: from
+					designing highly scalable Salesforce architectures and CI/CD pipelines to
+					orchestrating Kubernetes clusters and building intelligent automation systems
+					using RPA and Machine Learning. I've delivered transformative results at
+					scale—achieving <strong>65-90%</strong> efficiency gains through automation, reducing
+					data discrepancies by <strong>80%</strong>, and architecting systems that
+					process complex workflows for leading research institutions.
+				</p>
+				<p>
+					With dual Master's degrees in Information Systems and Information Technologies,
+					extensive AWS and Salesforce certifications, and published research in
+					AI-powered software systems, I combine deep technical expertise with strategic
+					vision. I thrive at the intersection of Infrastructure, Automation, and
+					Artificial Intelligence — building resilient, scalable systems that drive
+					measurable business impact while mentoring teams and establishing engineering
+					excellence standards.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Projects Section -->
+	<section id="projects" class="section section-projects">
+		<div class="container">
+			<div class="section-header">
+				<h2>Featured Projects</h2>
+				<p>
+					A selection of my work in Cloud Infrastructure, Automation, and Enterprise
+					Solutions
+				</p>
+			</div>
+			<div class="projects-grid">
+				{projects.map((project) => <ProjectCard {...project} />)}
+			</div>
+		</div>
+	</section>
+
+	<!-- Experience Section -->
+	<section id="experience" class="section">
+		<div class="container container-narrow">
+			<div class="section-header">
+				<h2>Work Experience</h2>
+				<p>My professional journey in building and scaling infrastructure</p>
+			</div>
+			<div class="timeline">
+				{experience.map((job) => <TimelineItem {...job} />)}
+			</div>
+		</div>
+	</section>
+
+	<!-- Education Section -->
+	<section id="education" class="section section-education">
+		<div class="container container-narrow">
+			<div class="section-header">
+				<h2>Education</h2>
+				<p>Academic background and achievements</p>
+			</div>
+			<div class="timeline">
+				{education.map((edu) => <EducationItem {...edu} />)}
+			</div>
+		</div>
+	</section>
+
+	<!-- Publications Section -->
+	<section id="publications" class="section section-publications">
+		<div class="container">
+			<div class="section-header">
+				<h2>Papers & Publications</h2>
+				<p>Research contributions and technical publications</p>
+			</div>
+			<div class="publications-list">
+				{publications.map((publication) => <PublicationCard {...publication} />)}
+			</div>
+		</div>
+	</section>
+
+	<!-- Certifications Section -->
+	<section id="certifications" class="section section-certifications">
+		<div class="container">
+			<div class="section-header">
+				<h2>Certifications</h2>
+				<p>Professional certifications and credentials</p>
+			</div>
+			<div class="certifications-grid">
+				{certifications.map((cert) => <CertificationCard {...cert} />)}
+			</div>
+		</div>
+	</section>
+
+	<!-- Skills Section -->
+	<section id="skills" class="section section-skills">
+		<div class="container">
+			<div class="section-header">
+				<h2>Skills & Technologies</h2>
+				<p>Technologies and tools I work with</p>
+			</div>
+			<div class="skills-grid">
+				{
+					Object.entries(skills).map(([category, skillList]) => (
+						<SkillCategory category={category} skills={skillList} />
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact Section -->
+	<ContactForm />
+</BaseLayout>
+
+<style>
+	/* Hero Section */
+	.hero-content {
+		text-align: center;
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+	.hero-title {
+		font-size: var(--text-5xl);
+		line-height: var(--leading-tight);
+		margin-bottom: var(--space-lg);
+	}
+
+	.hero-subtitle {
+		font-size: var(--text-xl);
+		color: var(--color-muted);
+		margin-bottom: var(--space-2xl);
+		line-height: var(--leading-snug);
+	}
+
+	.hero-cta {
+		display: flex;
+		gap: var(--space-md);
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	/* About Section */
+	.about-content p {
+		font-size: var(--text-lg);
+		line-height: var(--leading-relaxed);
+		color: var(--color-muted);
+	}
+
+	/* Section Headers */
+	.section-header {
+		text-align: center;
+		margin-bottom: var(--space-3xl);
+	}
+
+	.section-header h2 {
+		margin-bottom: var(--space-md);
+	}
+
+	.section-header p {
+		font-size: var(--text-lg);
+		color: var(--color-muted);
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	/* Projects Section */
+	.section-projects {
+		background-color: white;
+	}
+
+	.projects-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: var(--space-2xl);
+	}
+
+	/* Skills Section */
+	.section-skills {
+		background-color: var(--color-bg);
+	}
+
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: var(--space-2xl);
+	}
+
+	/* Timeline */
+	.timeline {
+		margin-top: var(--space-2xl);
+	}
+
+	/* Education Section */
+	.section-education {
+		background-color: var(--color-bg);
+	}
+
+	/* Publications Section */
+	.section-publications {
+		background-color: white;
+	}
+
+	.publications-list {
+		display: grid;
+		gap: var(--space-2xl);
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+	/* Certifications Section */
+	.section-certifications {
+		background-color: var(--color-bg);
+	}
+
+	.certifications-grid {
+		display: grid;
+		gap: var(--space-xl);
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.hero-title {
+			font-size: var(--text-3xl);
+		}
+
+		.hero-subtitle {
+			font-size: var(--text-lg);
+		}
+
+		.projects-grid {
+			grid-template-columns: 1fr;
+			gap: var(--space-xl);
+		}
+
+		.skills-grid {
+			grid-template-columns: 1fr;
+			gap: var(--space-xl);
+		}
+
+		.publications-list,
+		.certifications-grid {
+			gap: var(--space-lg);
+		}
+	}
+</style>

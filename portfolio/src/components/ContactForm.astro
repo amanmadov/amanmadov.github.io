@@ -1,0 +1,145 @@
+---
+// Contact form component with Formspree integration
+// Replace YOUR_FORMSPREE_ID with your actual Formspree form ID
+---
+
+<section id="contact" class="section">
+	<div class="container">
+		<div class="contact-wrapper">
+			<div class="contact-header">
+				<h2>Let's Work Together</h2>
+				<p class="contact-intro">
+					I'm always interested in hearing about new projects and opportunities. Whether
+					you have a question or just want to say hi, feel free to reach out.
+				</p>
+			</div>
+
+			<form
+				class="contact-form"
+				action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+				method="POST"
+			>
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" id="name" name="name" required placeholder="John Doe" />
+				</div>
+
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input
+						type="email"
+						id="email"
+						name="email"
+						required
+						placeholder="john@example.com"
+					/>
+				</div>
+
+				<div class="form-group">
+					<label for="subject">Subject</label>
+					<input
+						type="text"
+						id="subject"
+						name="subject"
+						required
+						placeholder="Project Inquiry"
+					/>
+				</div>
+
+				<div class="form-group">
+					<label for="message">Message</label>
+					<textarea
+						id="message"
+						name="message"
+						rows="6"
+						required
+						placeholder="Tell me about your project..."></textarea>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Send Message</button>
+			</form>
+		</div>
+	</div>
+</section>
+
+<style>
+	.contact-wrapper {
+		max-width: var(--max-width-form);
+		margin: 0 auto;
+	}
+
+	.contact-header {
+		text-align: center;
+		margin-bottom: var(--space-3xl);
+	}
+
+	.contact-header h2 {
+		margin-bottom: var(--space-md);
+	}
+
+	.contact-intro {
+		color: var(--color-muted);
+		font-size: var(--text-lg);
+		max-width: 500px;
+		margin: 0 auto;
+	}
+
+	.contact-form {
+		background-color: white;
+		border: 1px solid var(--color-border);
+		padding: var(--space-2xl);
+	}
+
+	.form-group {
+		margin-bottom: var(--space-lg);
+	}
+
+	.form-group:last-of-type {
+		margin-bottom: var(--space-xl);
+	}
+
+	label {
+		display: block;
+		font-weight: 600;
+		margin-bottom: var(--space-sm);
+		color: var(--color-fg);
+		font-size: var(--text-sm);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	input,
+	textarea {
+		width: 100%;
+		padding: var(--space-md);
+		font-family: var(--font-base);
+		font-size: var(--text-base);
+		border: 1px solid var(--color-border);
+		background-color: var(--color-bg);
+		color: var(--color-fg);
+		transition: all var(--transition-fast);
+	}
+
+	input:focus,
+	textarea:focus {
+		outline: none;
+		border-color: var(--color-accent);
+		background-color: white;
+	}
+
+	textarea {
+		resize: vertical;
+		min-height: 150px;
+	}
+
+	button[type='submit'] {
+		width: 100%;
+		font-size: var(--text-lg);
+	}
+
+	@media (max-width: 768px) {
+		.contact-form {
+			padding: var(--space-lg);
+		}
+	}
+</style>
